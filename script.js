@@ -36,7 +36,10 @@ function jugarCachipun(veces) {
         } else {
             output.innerHTML += "<p>¡Lo siento! Has perdido contra la máquina.</p>";
         }
+        // Después de mostrar los resultados de la jugada
+            output.innerHTML += "<div class='game-divider'></div>";
     }
+
 }
 
 function jugar() {
