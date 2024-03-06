@@ -1,52 +1,74 @@
 function jugarCachipun(veces) {
-    const opciones = ["piedra", "papel", "tijera"]; // Cambiar opciones a minúsculas
+    const opciones = ["piedra", "papel", "tijera"]; 
     const output = document.getElementById("output");
-    output.innerHTML = ""; // Limpiar el contenido anterior
+    output.innerHTML = ""; 
     
     for (let i = 0; i < veces; i++) {
         output.innerHTML += "<p>Juego #" + (i + 1) + "</p>";
         
-        // Solicitar la jugada del usuario
-        let jugadaUsuario = prompt("Elige tu jugada (Piedra, Papel, Tijera):");
-        if (!jugadaUsuario) return; // Si el usuario cancela, salir del juego
         
-        // Verificar si la jugada del usuario es válida
-        if (!opciones.includes(jugadaUsuario.toLowerCase())) { // Convertir la jugada a minúsculas aquí
+        let jugadaUsuario = prompt("Elige tu jugada (Piedra, Papel, Tijera):");
+        if (!jugadaUsuario) return; 
+        
+        
+        if (!opciones.includes(jugadaUsuario.toLowerCase())) { 
             output.innerHTML += "<p>Jugada no válida. Por favor, elige entre Piedra, Papel o Tijera.</p>";
             continue;
         }
         
-        jugadaUsuario = jugadaUsuario.toLowerCase(); // Convertir la jugada a minúsculas después de verificar la validez
+        jugadaUsuario = jugadaUsuario.toLowerCase(); 
         
-        // Generar jugada automática para la máquina
+        
         let jugadaMaquina = opciones[Math.floor(Math.random() * 3)];
         
-        output.innerHTML += "<p>Tu jugada: " + jugadaUsuario + "</p>";
-        output.innerHTML += "<p>Jugada de la máquina: " + jugadaMaquina + "</p>";
+        output.innerHTML += "<p class='jugada-usuario " + determinarColor(jugadaUsuario, jugadaMaquina) + "'>Tu jugada: " + jugadaUsuario + "</p>";
+        output.innerHTML += "<p class='jugada-maquina " + determinarColor(jugadaMaquina, jugadaUsuario) + "'>Jugada de la máquina: " + jugadaMaquina + "</p>";
         
-        // Determinar al ganador
-        if (jugadaUsuario === jugadaMaquina) {
-            output.innerHTML += "<p>¡Es un empate!</p>";
-        } else if (
-            (jugadaUsuario === "piedra" && jugadaMaquina === "tijera") || // Cambiar opciones a minúsculas aquí
-            (jugadaUsuario === "papel" && jugadaMaquina === "piedra") ||  // Cambiar opciones a minúsculas aquí
-            (jugadaUsuario === "tijera" && jugadaMaquina === "papel")    // Cambiar opciones a minúsculas aquí
-        ) {
-            output.innerHTML += "<p>¡Felicidades! Has ganado.</p>";
-        } else {
-            output.innerHTML += "<p>¡Lo siento! Has perdido contra la máquina.</p>";
-        }
-        // Después de mostrar los resultados de la jugada
-            output.innerHTML += "<div class='game-divider'></div>";
+       
+        let resultado = determinarResultado(jugadaUsuario, jugadaMaquina);
+        output.innerHTML += "<p class='" + determinarColorResultado(resultado) + "'>" + resultado + "</p>";
+        
+        
+        output.innerHTML += "<div class='game-divider'></div>";
     }
+}
 
+function determinarColor(jugada1, jugada2) {
+    if (jugada1 === jugada2) {
+        return "empate"; 
+    } else {
+        return ""; 
+    }
+}
+
+function determinarResultado(jugadaUsuario, jugadaMaquina) {
+    if (jugadaUsuario === jugadaMaquina) {
+        return "¡Es un empate!";
+    } else if (
+        (jugadaUsuario === "piedra" && jugadaMaquina === "tijera") ||
+        (jugadaUsuario === "papel" && jugadaMaquina === "piedra") ||
+        (jugadaUsuario === "tijera" && jugadaMaquina === "papel")
+    ) {
+        return "¡Felicidades! Has ganado.";
+    } else {
+        return "¡Lo siento! Has perdido contra la máquina.";
+    }
+}
+
+function determinarColorResultado(resultado) {
+    if (resultado.includes("empate")) {
+        return "empate";
+    } else if (resultado.includes("ganado")) {
+        return "ganado";
+    } else {
+        return "perdido";
+    }
 }
 
 function jugar() {
-    // Solicitar al usuario las veces que desea jugar
     let veces = parseInt(prompt("¿Cuántas veces deseas jugar?"));
 
-    // Verificar si el valor ingresado es válido
+   
     if (isNaN(veces) || veces <= 0) {
         console.log("Número de juegos no válido.");
     } else {

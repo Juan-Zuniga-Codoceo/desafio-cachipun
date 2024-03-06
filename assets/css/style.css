@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Micro+5&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,16 +9,19 @@ body {
 
 header {
     text-align: center;
-    background-color: #007bff;
+    background-color: #f0f0f0;
     color: #fff;
     padding: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 36px;
-    margin: 0;
+    text-align: center;
+    color: #333;
+    font-family: "Madimi One", sans-serif;
+    font-size: 36px; 
 }
+
 
 main {
     display: flex;
@@ -27,25 +32,27 @@ main {
 }
 
 .container {
-    max-width: 1200px; /* Ajustar el ancho del contenedor */
-    margin: 20px auto; /* Centrar el contenedor */
+    max-width: 1200px;
+    margin: 20px auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
 }
 
 .game-row {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid #ccc; /* Línea separadora entre filas */
+    padding-bottom: 20px; 
+    border-bottom: 1px solid #ccc;
 }
 
 .game-result {
-    flex-basis: calc(33.33% - 20px); /* 33.33% de ancho para cada juego */
+    flex-basis: calc(33.33% - 20px);
     padding: 10px;
     border-radius: 4px;
     background-color: #f9f9f9;
+    text-align: center; 
 }
 
 .btn-jugar {
@@ -63,3 +70,21 @@ main {
     background-color: #218838;
 }
 
+.game-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0; 
+}
+
+.empate {
+    color: orange; 
+}
+
+.ganado {
+    color: green; 
+}
+
+.perdido {
+    color: red; 
+}
